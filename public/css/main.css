@@ -1,0 +1,86 @@
+body {
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgb(31, 32, 35);
+  color: rgb(210, 211, 211);
+  z-index: 1;
+  position: relative;
+  border-bottom: 1px solid grey;
+}
+.navLeft {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+ul {
+  display: flex;
+}
+ul li {
+  padding: 0 1rem;
+}
+
+.navLogo {
+  width: 12%;
+  min-width: 2rem;
+}
+h1 {
+  font-size: 1.5rem;
+}
+
+.sideBarTitle {
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 1.5rem;
+  border-bottom: 1px solid grey;
+}
+
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(31, 32, 35);
+  color: rgb(210, 211, 211);
+  height: 100%;
+  width: 10rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 5rem 2rem;
+  text-align: center;
+  border-right: 1px solid grey;
+}
+.sideBar a {
+  padding-top: 1rem;
+  width: 50%;
+  margin: 0 auto;
+}
+.sideBar .active {
+  border-bottom: 0.5px solid grey;
+  padding-bottom: 0.5rem;
+}
+.mainContents {
+  margin-left: 14rem;
+  padding: 1rem 2rem;
+  color: white;
+  background-color: rgb(22, 21, 24);
+}
+
+h2,
+h3 {
+  margin: 2rem 0;
+  font-size: 1.5rem;
+  border-bottom: 1px solid grey;
+}
+.reminders {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+}
+.finishedReminders {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+}
