@@ -1,0 +1,22 @@
+<section class="mainContents">
+  <h2>We've got things to do!</h2>
+  <div class="giveInput">
+    <input type="text" />
+    <button>Submit</button>
+  </div>
+  {{#each reminders}}
+    <div class="reminders">
+      <button>Done</button>
+      <p>{{nameReminder}}</p>
+      <button>Delete</button>
+      <button>Edit</button>
+    </div>
+  {{/each}}
+  <h3>Things you've done</h3>
+  {{#each finishedReminders}}
+    <div class="finishedReminders">
+      <p>{{finishedReminder}}</p>
+      <button>Delete</button>
+    </div>
+  {{/each}}
+</section>
