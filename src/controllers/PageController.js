@@ -1,12 +1,11 @@
-import { sideNavData, reminders, finishedReminders } from "../data/data.js";
-import NavigationItem from "../models/NavigationItem.js";
+import { sideNavData /*, tasks, finishedTasks */ } from "../data/data.js";
+import TaskItem from "../models/TaskItem.js";
 
-const menuItems = await NavigationItem.query();
+const taskItems = await TaskItem.query();
 export const home = (req, res) => {
   res.render("pages/home", {
     currentUrl: req.originalUrl,
     sideNavData,
-    reminders,
-    finishedReminders,
+    taskItems,
   });
 };

@@ -9,20 +9,48 @@ export const sideNavData = [
   },
 ];
 
-export const reminders = [
+export const tasks = [
   {
-    nameReminder: "Working for programming 3",
+    id: 1,
+    title: "Buy groceries",
+    is_done: 0,
+    created_at: "2024-03-13 19:10:33",
+    updated_at: "2024-03-13 19:10:33",
+    categoryId: 2,
   },
   {
-    nameReminder: "Chatting with other students",
+    id: 2,
+    title: "Do laundry",
+    is_done: 0,
+    created_at: "2024-03-13 19:10:33",
+    updated_at: "2024-03-13 19:10:33",
+    categoryId: 2,
+  },
+  {
+    id: 4,
+    title: "Piano lesson",
+    is_done: 0,
+    created_at: "2024-03-13 19:10:33",
+    updated_at: "2024-03-13 19:10:33",
+    categoryId: 3,
   },
 ];
 
-export const finishedReminders = [
+export const finishedTasks = [
   {
-    finishedReminder: "Doing homework",
+    id: 3,
+    title: "Wash dishes",
+    is_done: 0,
+    created_at: "2024-03-13 19:10:33",
+    updated_at: "2024-03-13 19:10:33",
+    categoryId: 2,
   },
   {
-    finishedReminder: "eating dinner",
+    id: 6,
+    title: "Homework",
+    is_done: 0,
+    created_at: "2024-03-13 19:10:33",
+    updated_at: "2024-03-13 19:10:33",
+    categoryId: 4,
   },
 ];

@@ -1,22 +1,100 @@
 <section class="mainContents">
   <h2>We've got things to do!</h2>
-  <div class="giveInput">
-    <input type="text" />
-    <button>Submit</button>
+  <div class="tasks">
+    <form action="/tasks" method="POST">
+      <input type="hidden" name="method" value="POST" />
+      <label for="title">title</label>
+      <input type="text" id="title" name="title" />
+      <label for="categoryId">categoryId</label>
+      <input type="number" id="categoryId" name="categoryId" />
+      <input type="submit" value="Voeg toe" />
+    </form>
   </div>
-  {{#each reminders}}
-    <div class="reminders">
-      <button>Done</button>
-      <p>{{nameReminder}}</p>
-      <button>Delete</button>
-      <button>Edit</button>
-    </div>
+  <br />
+  {{#each taskItems}}
+    {{#unless this.is_done}}
+      <br />
+      <div class="tasks">
+        <form action="/tasks" method="POST">
+          <input type="hidden" name="method" value="PUT" />
+          <input type="hidden" name="id" value="{{id}}" />
+          <input
+            type="text"
+            name="title"
+            value="{{title}}"
+            placeholder="title"
+          />
+          <input
+            type="number"
+            name="categoryId"
+            value="{{categoryId}}"
+            placeholder="categoryId"
+          />
+          <input
+            type="checkbox"
+            class="is_done"
+            name="is_done"
+              {{#if is_done}}
+                checked
+              {{/if}}
+            value="{{is_done}}"
+            placeholder="is_done"
+          />
+          <button type="submit">
+            Update
+          </button>
+        </form>
+        <form action="/tasks" method="POST">
+          <input type="hidden" name="method" value="DELETE" />
+          <input type="hidden" name="id" value="{{id}}" />
+
+          <input type="submit" value="Verwijder" />
+        </form>
+      </div>
+    {{/unless}}
   {{/each}}
-  <h3>Things you've done</h3>
-  {{#each finishedReminders}}
-    <div class="finishedReminders">
-      <p>{{finishedReminder}}</p>
-      <button>Delete</button>
-    </div>
+
+  <h3>Things youve done</h3>
+
+  {{#each taskItems}}
+    {{#if this.is_done}}
+      <div class="finishedTasks">
+        <form action="/tasks" method="POST">
+          <input type="hidden" name="method" value="PUT" />
+          <input type="hidden" name="id" value="{{id}}" />
+          <input
+            type="text"
+            name="title"
+            value="{{title}}"
+            placeholder="title"
+          />
+                    <input
+            type="hidden"
+            name="categoryId"
+            value="{{categoryId}}"
+            placeholder="categoryId"
+          />
+          <input
+            type="checkbox"
+            class="is_done"
+            name="is_done"
+              {{#if is_done}}
+                checked
+              {{/if}}
+            value="{{is_done}}"
+            placeholder="is_done"
+          />
+          <button type="submit">
+            Update
+          </button>
+        </form>
+        <form action="/tasks" method="POST">
+            <input type="hidden" name="method" value="DELETE" />
+            <input type="hidden" name="id" value="{{id}}" />
+            <input type="submit" value="Verwijder" />
+        </form>
+      </div>
+    {{/if}}
   {{/each}}
+
 </section>
