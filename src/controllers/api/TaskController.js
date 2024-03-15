@@ -1,4 +1,21 @@
 import TaskItem from "../../models/TaskItem.js";
+import { validationResult } from "express-validator";
+
+//middleware
+export const postContact = async (req, res, next) => {
+  // check errors and show in browser
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    req.formErrorFields = {};
+
+    errors.array().forEach((error) => {
+      req.formErrorFields[error.path] = error.msg;
+    });
+    console.log(errors);
+    return false;
+  }
+  return true;
+};
 
 //get all tasks
 export const getTasks = async (req, res, next) => {
@@ -18,6 +35,11 @@ export const getTask = async (req, res, next) => {
 
 //create
 export const createTask = async (req, res, next) => {
+  if (!(await postContact(req, res, next))) {
+    return res
+      .status(400)
+      .json({ message: "Invalid data", errors: req.formErrorFields });
+  }
   const { title } = req.body;
   const categoryId = parseInt(req.body.categoryId);
   const task = await TaskItem.query().insert({ title, categoryId });
@@ -26,8 +48,12 @@ export const createTask = async (req, res, next) => {
 
 //update
 export const updateTask = async (req, res, next) => {
+  if (!(await postContact(req, res, next))) {
+    return res
+      .status(400)
+      .json({ message: "Invalid data", errors: req.formErrorFields });
+  }
   const { id } = req.body;
-  console.log(req.body.is_done);
   const task = await TaskItem.query().patchAndFetchById(id, {
     title: req.body.title,
     is_done: parseInt(req.body.is_done) === 1 ? true : false,
@@ -46,16 +72,16 @@ export const deleteTask = async (req, res, next) => {
   res.redirect("/");
 };
 
-export const handlePost = async (req, res) => {
+export const handlePost = async (req, res, next) => {
   const method = req.body.method;
   const id = req.body.id;
   if (method == "POST") {
-    createTask(req, res);
+    createTask(req, res, next);
   }
   if (method == "PUT") {
-    updateTask(req, res);
+    updateTask(req, res, next);
   }
   if (method == "DELETE") {
-    deleteTask(req, res);
+    deleteTask(req, res, next);
   }
 };

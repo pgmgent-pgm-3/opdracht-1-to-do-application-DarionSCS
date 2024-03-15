@@ -9,6 +9,8 @@ import { home } from "./controllers/PageController.js";
 import HandlebarsHelpers from "./lib/HandlebarsHelpers.js";
 import bodyParser from "body-parser";
 
+import ContactValidation from "./middleware/validation/TaskValidation.js";
+
 import {
   getTask,
   getTasks,
@@ -38,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //page routes
 app.get("/", home);
-app.post("/tasks", handlePost);
+app.post("/tasks", ContactValidation, handlePost);
 
 app.listen(PORT, () => {
   console.log(`Server is listening at http://localhost:${PORT}`);
