@@ -97,4 +97,11 @@
     {{/if}}
   {{/each}}
 
+  <form action="/testmail" method="GET">
+    <input type="hidden" name="method" value="GET" />
+    <label for="mail">mail</label>
+    <input type="text" name="mail" value = "" />
+    <input type="submit" value="Stuur" />
+  </form>
+
 </section>

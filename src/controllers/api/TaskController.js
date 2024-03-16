@@ -1,4 +1,5 @@
 import TaskItem from "../../models/TaskItem.js";
+import { taskCreatedMail } from "../api/MailController.js";
 import { validationResult } from "express-validator";
 
 //middleware
@@ -43,7 +44,7 @@ export const createTask = async (req, res, next) => {
   const { title } = req.body;
   const categoryId = parseInt(req.body.categoryId);
   const task = await TaskItem.query().insert({ title, categoryId });
-  res.redirect("/");
+  taskCreatedMail(req, res, next, task.id);
 };
 
 //update

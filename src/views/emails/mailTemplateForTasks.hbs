@@ -1,0 +1,9 @@
+<h1 style="color: red;">{{ title }}</h1>
+<div class="mail-body" style="background-color: #CCC;">
+    <p>{{{ message }}}</p>
+    <ul>
+        {{#each tasks}}
+            <li>{{ this.title }}</li>
+        {{/each}}
+    </ul>
+</div>

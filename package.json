@@ -20,6 +20,7 @@
     "handlebars-helpers": "^0.10.0",
     "jsonwebtoken": "^9.0.2",
     "knex": "^3.1.0",
+    "nodemailer-express-handlebars": "^6.1.2",
     "nodemon": "^3.0.3",
     "objection": "^3.1.4",
     "path": "^0.12.7",

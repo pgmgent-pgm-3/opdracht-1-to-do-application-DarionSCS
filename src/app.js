@@ -11,14 +11,9 @@ import bodyParser from "body-parser";
 
 import ContactValidation from "./middleware/validation/TaskValidation.js";
 
-import {
-  getTask,
-  getTasks,
-  createTask,
-  updateTask,
-  deleteTask,
-  handlePost,
-} from "./controllers/api/TaskController.js";
+import { handlePost } from "./controllers/api/TaskController.js";
+
+import { getMails } from "./controllers/api/MailController.js";
 
 const app = express();
 
@@ -41,6 +36,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //page routes
 app.get("/", home);
 app.post("/tasks", ContactValidation, handlePost);
+
+app.get("/testmail", getMails);
 
 app.listen(PORT, () => {
   console.log(`Server is listening at http://localhost:${PORT}`);
