@@ -73,6 +73,7 @@ export const deleteTask = async (req, res, next) => {
   res.redirect("/");
 };
 
+//handle post
 export const handlePost = async (req, res, next) => {
   const method = req.body.method;
   const id = req.body.id;
