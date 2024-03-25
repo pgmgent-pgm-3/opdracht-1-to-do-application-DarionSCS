@@ -190,7 +190,7 @@ export const postRegister = async (req, res, next) => {
 export const logout = async (req, res) => {
   // DELETE COOKIE USER
 
-  res.cookie("user", "", { httpOnly: true });
+  res.clearCookie("token");
 
   res.redirect("/");
 };
