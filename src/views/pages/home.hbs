@@ -5,8 +5,11 @@
       <input type="hidden" name="method" value="POST" />
       <label for="title">title</label>
       <input type="text" id="title" name="title" />
-      <label for="categoryId">categoryId</label>
-      <input type="number" id="categoryId" name="categoryId" />
+      <select name="categoryId">
+        {{#each taskCategories}}
+            <option value="{{ id }}" {{#ifEquals id ../categoryId}}selected{{/ifEquals}}>{{ name }}</option>
+        {{/each}}
+      </select>
       <input type="submit" value="Voeg toe" />
     </form>
   </div>
@@ -24,12 +27,13 @@
             value="{{title}}"
             placeholder="title"
           />
-          <input
-            type="number"
-            name="categoryId"
-            value="{{categoryId}}"
-            placeholder="categoryId"
-          />
+
+      <select name="categoryId">
+        {{#each ../taskCategories}}
+            <option value="{{ id }}" {{#ifEquals id ../categoryId}}selected{{/ifEquals}}>{{ name }}</option>
+        {{/each}}
+      </select>
+
           <input
             type="checkbox"
             class="is_done"

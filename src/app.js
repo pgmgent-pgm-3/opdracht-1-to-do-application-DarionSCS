@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 import { create } from "express-handlebars";
@@ -10,6 +11,11 @@ import HandlebarsHelpers from "./lib/HandlebarsHelpers.js";
 import bodyParser from "body-parser";
 
 import ContactValidation from "./middleware/validation/TaskValidation.js";
+import AuthRegisterValidation from "./middleware/validation/AuthRegisterValidation.js";
+import AuthLoginValidation from "./middleware/validation/AuthLoginValidation.js";
+import * as AuthController from "./controllers/AuthController.js";
+import { jwtAuth } from "./middleware/jwtAuth.js";
+import authoriseUser from "./middleware/autorisation/AuthoriseUser.js";
 
 import { handlePost } from "./controllers/api/TaskController.js";
 
@@ -32,11 +38,40 @@ app.set("view engine", "hbs");
 app.set("views", VIEWS_PATH); // location of the handlebars files
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 //page routes
-app.get("/", home);
-app.post("/tasks", ContactValidation, handlePost);
+app.get("/", jwtAuth, home);
+app.post(
+  "/tasks",
+  jwtAuth,
+  authoriseUser("admin"),
+  ContactValidation,
+  handlePost
+);
 
+// Auth routes
+app.get("/login", AuthController.login);
+app.get("/register", AuthController.register);
+
+app.post(
+  "/register",
+  AuthRegisterValidation,
+  AuthController.postRegister,
+  AuthController.register
+);
+
+app.post(
+  "/login",
+  AuthLoginValidation,
+  AuthController.postLogin,
+  AuthController.login
+);
+
+//logout
+app.get("/logout", AuthController.logout);
+
+//test for mails
 app.get("/testmail", getMails);
 
 app.listen(PORT, () => {

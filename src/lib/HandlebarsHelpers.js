@@ -8,7 +8,7 @@ const myHelpers = {
     return options.fn(this);
   },
   ifEquals: function (arg1, arg2, options) {
-    return arg1 == arg2 ? options.fn(this) : console.log("e");
+    return arg1 == arg2 ? options.fn(this) : options.inverse(this);
   },
 };
 

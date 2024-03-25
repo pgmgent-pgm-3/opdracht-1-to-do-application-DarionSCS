@@ -5,6 +5,8 @@ export function up(knex) {
     table.increments("id").primary();
     table.string("title").notNullable();
     table.boolean("is_done").defaultTo(false);
+    table.integer("categoryId").unsigned().notNullable().defaultTo(5);
+    table.foreign("categoryId").references("categories.id");
     table.timestamps(true, true);
   });
 }
