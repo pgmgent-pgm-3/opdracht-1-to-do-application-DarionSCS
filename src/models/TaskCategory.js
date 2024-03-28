@@ -1,5 +1,6 @@
 import knex from "../lib/Knex.js";
 import { Model } from "objection";
+import TaskItem from "./TaskItem.js";
 
 // instantiate the model
 Model.knex(knex);
@@ -27,7 +28,6 @@ class TaskCategory extends Model {
   }
   //relations here
   static get relationMappings() {
-    const TaskItem = require("./TaskItem").default;
     return {
       taskItems: {
         relation: Model.HasManyRelation,

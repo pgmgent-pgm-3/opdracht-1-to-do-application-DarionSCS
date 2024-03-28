@@ -1,5 +1,5 @@
-import MailTransporter from "../../lib/MailTransporter.js";
-import TaskItem from "../../models/TaskItem.js";
+import MailTransporter from "../lib/MailTransporter.js";
+import TaskItem from "../models/TaskItem.js";
 
 export const getMails = async (req, res, next) => {
   try {

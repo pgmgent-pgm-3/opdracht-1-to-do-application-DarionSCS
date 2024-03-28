@@ -1,6 +1,6 @@
 <section class="sideBar">
   <div class="sideBarTitle">Categories</div>
-  {{#each sideNavData}}
-    <a {{#ifEquals ../currentUrl url}} class="active" {{/ifEquals}} href="{{url}}">{{name}}</a>
+  {{#each taskCategories}}
+    <a class="active" href="{{name}}">{{name}}</a>
   {{/each}}
 </section>
