@@ -1,6 +1,7 @@
 import MailTransporter from "../lib/MailTransporter.js";
 import TaskItem from "../models/TaskItem.js";
 
+//mails all tasks to the user
 export const getMails = async (req, res, next) => {
   try {
     const tasks = await TaskItem.query();
@@ -25,17 +26,22 @@ export const taskCreatedMail = async (req, res, next, addedTaskId) => {
   try {
     const task = await TaskItem.query().findById(addedTaskId);
 
-    MailTransporter.sendMail({
-      from: "georgette@pgm.be",
-      to: "test@gmail.be",
-      subject: "You have added a task!",
-      template: "mailTemplateForTask",
-      context: {
-        title: "The new task you've added:",
-        message: "1 tasks",
-        task: task,
-      },
-    });
+    try { 
+      await MailTransporter.sendMail({
+        from: "georgette@pgm.be",
+        to: "test@gmail.be",
+        subject: "You have added a task!",
+        template: "mailTemplateForTask",
+        context: {
+          title: "The new task you've added:",
+          message: "1 tasks",
+          task: task,
+        },
+      });
+    } catch (error) {
+      console.error("Error sending mail: ", error.message); // if node mailer server is not running, then site wont crash when adding tasks
+    }
+
     res.redirect("/");
   } catch (error) {
     res.send("Error sending mail: " + error.message);
