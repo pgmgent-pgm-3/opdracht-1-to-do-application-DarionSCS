@@ -11,7 +11,8 @@ import HandlebarsHelpers from "./lib/HandlebarsHelpers.js";
 import bodyParser from "body-parser";
 
 // import validations
-import ContactValidation from "./middleware/validation/TaskValidation.js";
+import TaskValidation from "./middleware/validation/TaskValidation.js";
+import CategoryValidation from "./middleware/validation/CategoryValidation.js";
 import AuthRegisterValidation from "./middleware/validation/AuthRegisterValidation.js";
 import AuthLoginValidation from "./middleware/validation/AuthLoginValidation.js";
 
@@ -21,7 +22,8 @@ import authoriseUser from "./middleware/autorisation/AuthoriseUser.js";
 
 // import controllers
 import * as AuthController from "./controllers/AuthController.js";
-import { handlePost } from "./controllers/TaskController.js";
+import { handlePostTask } from "./controllers/TaskController.js";
+import { handlePostCategory } from "./controllers/CategoryController.js";
 import { getMails } from "./controllers/MailController.js";
 
 // import api controllers
@@ -72,9 +74,19 @@ app.post(
   "/tasks",
   jwtAuth,
   authoriseUser("admin"),
-  ContactValidation,
-  handlePost
+  TaskValidation,
+  handlePostTask
 );
+
+// category adder route
+app.post(
+  "/categories",
+  jwtAuth,
+  authoriseUser("admin"),
+  CategoryValidation,
+  handlePostCategory
+);
+app.get("/categories/:id", CategoryController.getCategoryTasks);
 
 // Auth routes
 app.get("/login", AuthController.login);

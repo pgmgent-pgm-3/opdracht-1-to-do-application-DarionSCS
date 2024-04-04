@@ -1,4 +1,4 @@
-import { sideNavData /*, tasks, finishedTasks */ } from "../data/data.js";
+import /*sideNavData , tasks, finishedTasks */ "../data/data.js";
 import TaskItem from "../models/TaskItem.js";
 import TaskCategory from "../models/TaskCategory.js";
 
@@ -7,7 +7,6 @@ export const home = async (req, res) => {
   const taskCategories = await TaskCategory.query();
   res.render("pages/home", {
     currentUrl: req.originalUrl,
-    sideNavData,
     taskItems,
     taskCategories,
   });

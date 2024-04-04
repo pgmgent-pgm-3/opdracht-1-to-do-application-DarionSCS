@@ -60,7 +60,6 @@ export const updateTask = async (req, res, next) => {
     is_done: parseInt(req.body.is_done) === 1 ? true : false,
     categoryId: parseInt(req.body.categoryId),
   });
-  res.redirect("/");
 };
 
 //delete
@@ -74,7 +73,7 @@ export const deleteTask = async (req, res, next) => {
 };
 
 //handle post
-export const handlePost = async (req, res, next) => {
+export const handlePostTask = async (req, res, next) => {
   const method = req.body.method;
   const id = req.body.id;
   if (method == "POST") {

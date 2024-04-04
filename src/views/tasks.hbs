@@ -1,50 +1,10 @@
-<section class="mainContents">
-  <h2>We've got things to do!</h2>
-  <br>
-  <p>Add a new task:</p>
-  <div class="tasks">
-    <form action="/tasks" method="POST">
-      <input type="hidden" name="method" value="POST" />
-      <label for="title">title: </label>
-      <input type="text" id="title" name="title" />
-      <select name="categoryId">
-        {{#each taskCategories}}
-            <option value="{{ id }}" {{#ifEquals id ../categoryId}}selected{{/ifEquals}}>{{ name }}</option>
-        {{/each}}
-      </select>
-      <input type="submit" value="Voeg toe" />
-    </form>
-  </div>
-  <br />
-  <p>Add a new category:</p>
-    <div class="categories">
-    <form action="/categories" method="POST">
-      <input type="hidden" name="method" value="POST" />
-      <label for="name">name:</label>
-      <input type="text" id="name" name="name" />
-      <label for="description">description:</label>
-      <input type="text" id="description" name="description" />
-      <input type="submit" value="Voeg toe" />
-    </form>
-  </div>
- <br>
-    <p>Delete a category:</p>
-    <div class="categories">
-    <form action="/categories" method="POST">
-      <input type="hidden" name="method" value="DELETE" />
-      <label for="name">name:</label>
-      <select name="id">
-        {{#each taskCategories}}
-            <option value="{{ id }}" {{#ifEquals id ../categoryId}}selected{{/ifEquals}}>{{ name }}</option>
-        {{/each}}
-      </select>
-      <input type="submit" value="Verwijder" />
-    </form>
-  </div>
-  <br><br>
-  <h3>All your current tasks:</h3>
-  {{#each taskItems}}
-    {{#unless this.is_done}}
+<br>
+
+<a href="/">Go back to home page</a>
+<h2>You are viewing all your tasks from category: {{currentCategory.name}}</h2>
+{{#each taskItems}}
+  <div class="task">
+   {{#unless this.is_done}}
       <br />
       <div class="tasks">
         <form action="/tasks" method="POST">
@@ -85,11 +45,10 @@
         </form>
       </div>
     {{/unless}}
-  {{/each}}
+  </div>
+{{/each}}
 
-  <h3>Things youve finished:</h3>
-
-  {{#each taskItems}}
+ {{#each taskItems}}
     {{#if this.is_done}}
       <div class="finishedTasks">
         <form action="/tasks" method="POST">
@@ -129,12 +88,3 @@
       </div>
     {{/if}}
   {{/each}}
-  <br>
-  <form action="/testmail" method="GET">
-    <input type="hidden" name="method" value="GET" />
-    <label for="mail">Mail all to-do's to e-mail:</label>
-    <input type="text" name="mail" value = "" />
-    <input type="submit" value="Send" />
-  </form>
-
-</section>

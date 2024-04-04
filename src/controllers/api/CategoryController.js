@@ -1,4 +1,5 @@
 import Category from "../../models/TaskCategory.js";
+import Task from "../../models/TaskItem.js";
 
 export const getCategory = async (req, res, next) => {
   try {
@@ -13,6 +14,18 @@ export const getCategories = async (req, res, next) => {
   try {
     const categories = await Category.query();
     res.json(categories);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export const getCategoryTasks = async (req, res, next) => {
+  try {
+    const taskItems = await Task.query().where("categoryId", req.params.id);
+    const currentCategory = await Category.query().findById(req.params.id);
+    const taskCategories = await Category.query();
+
+    res.render("tasks", { taskItems, currentCategory, taskCategories });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
