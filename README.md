@@ -10,10 +10,8 @@ Instructions:
 
 1. run "npm i" to install node modules.
 2. run "npx knex migrate:latest" to create the sqlite3 database.
-3. Open the "migrations" folder and relocate the only disabled migration file to it's parent folder. This is to add a categoryId to the tasks
-4. run "npx knex migrate:latest" again
-5. run "npx knex seed:run" for some temporary data
-6. You are ready to start the server by using the "npm run start" command
+3. run "npx knex seed:run" for some temporary data
+4. You are ready to start the server by using the "npm run start" command
 
 Feature Overview:
 
