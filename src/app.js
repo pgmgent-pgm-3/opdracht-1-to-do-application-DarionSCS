@@ -95,9 +95,8 @@ app.get("/register", AuthController.register);
 //logout
 app.get("/logout", AuthController.logout);
 
-/** test for mails
- * app.get("/testmail", getMails);
- */
+//test for mails
+app.get("/testmail", getMails);
 
 /** API routes for categories */
 //get all categories
