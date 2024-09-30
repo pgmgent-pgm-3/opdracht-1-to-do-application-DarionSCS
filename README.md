@@ -30,4 +30,4 @@ API usage:
   /tasks
   /categories
 
-author: daria habibi
+author: darionSCS
